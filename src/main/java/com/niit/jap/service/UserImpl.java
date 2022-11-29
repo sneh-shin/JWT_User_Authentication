@@ -6,6 +6,7 @@
 package com.niit.jap.service;
 
 import com.niit.jap.domain.User;
+import com.niit.jap.exception.UserNotFoundException;
 import com.niit.jap.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,11 @@ public class UserImpl implements UserService {
     }
 
     @Override
-    public User getByEmailAndPassword(String email, String password) {
-        return repository.findByEmailAndPassword(email, password);
+    public User getByEmailAndPassword(String email, String password) throws UserNotFoundException {
+        User user = repository.findByEmailAndPassword(email, password);
+        if (user == null) {
+            throw new UserNotFoundException();
+        }
+        return user;
     }
 }
