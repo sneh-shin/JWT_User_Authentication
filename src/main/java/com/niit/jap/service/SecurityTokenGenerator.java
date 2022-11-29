@@ -1,9 +1,9 @@
-/*
- *Author Name: Sneha Shinde
- *Date: 11/29/2022
- * Created With: IntelliJ IDEA Community Edition
- */
 package com.niit.jap.service;
 
-public class SecurityTokenGenerator {
+import com.niit.jap.domain.User;
+
+import java.util.Map;
+
+public interface SecurityTokenGenerator {
+    Map<String, String> generateToken(User user);
 }
