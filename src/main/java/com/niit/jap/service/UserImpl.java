@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserImpl implements UserService {
@@ -23,21 +24,21 @@ public class UserImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
-        return null;
+        return repository.save(user);
     }
 
     @Override
     public List<User> getAll() {
-        return null;
+        return ((List<User>) repository.findAll());
     }
 
     @Override
-    public User getById(int id) {
-        return null;
+    public Optional<User> getById(int id) {
+        return repository.findById(id);
     }
 
     @Override
     public User getByEmailAndPassword(String email, String password) {
-        return null;
+        return repository.findByEmailAndPassword(email, password);
     }
 }
